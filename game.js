@@ -174,7 +174,7 @@ class TheGame {
     // 设置锚点居中
     this.gameLevelText.anchor.set(0.5, 0.5)
 
-    // 用户点击事件
+    // 玩家点击事件
     game.input.onDown.add(this.pickTile, this);
   }
 
@@ -209,7 +209,7 @@ class TheGame {
       this.setGameTimer()
       // 隐藏关卡展示
       this.levelGroup.visible = false
-      // 500毫秒之后才可以点击，防止用户手速过快，点击确认就立马被触发
+      // 500毫秒之后才可以点击，防止玩家手速过快，点击确认就立马被触发
       setTimeout(() => {
         this.canPick = true
       }, 500);
@@ -312,7 +312,7 @@ class TheGame {
     this.tileGroup.add(theTile);
   }
 
-  // 在用户点击或触摸时执行
+  // 在玩家点击或触摸时执行
   pickTile(e) {
 
     // 判断是否可以点击，在瓦片还在填充期间是不可以点击的
@@ -393,16 +393,16 @@ class TheGame {
   fillVerticalHoles() {
 
     // 定义个变量，用来告诉我们是否填满了被销毁的格子位置
-    var filled = false;
+    let filled = false;
 
-    for (var i = gameOptions.fieldSize - 2; i >= 0; i--) {
-      for (var j = 0; j < gameOptions.fieldSize; j++) {
+    for (let i = gameOptions.fieldSize - 2; i >= 0; i--) {
+      for (let j = 0; j < gameOptions.fieldSize; j++) {
 
         // 如果格子不为空
         if (!this.tilesArray[i][j].isEmpty) {
 
           // 让我们数一下在这块瓷砖下面能找到多少个空的坐标位置
-          var holesBelow = this.countSpacesBelow(i, j);
+          let holesBelow = this.countSpacesBelow(i, j);
 
           // 如果留空的位置大于零
           if (holesBelow) {
@@ -425,13 +425,13 @@ class TheGame {
     }
 
     // 现在是时候重用池中保存的tiles (tilePool数组)了，让我们从遍历每一列开始
-    for (i = 0; i < gameOptions.fieldSize; i++) {
+    for (let i = 0; i < gameOptions.fieldSize; i++) {
 
       // 计算每一列有多少空格
       const topHoles = this.countSpacesBelow(-1, i);
 
       // 然后遍历每一个空格
-      for (j = topHoles - 1; j >= 0; j--) {
+      for (let j = topHoles - 1; j >= 0; j--) {
 
         // 设置随机值
         const tileValue = game.rnd.integerInRange(0, gameOptions.tiles.length - 1);
@@ -473,8 +473,8 @@ class TheGame {
 
   // 计算被销毁的格子数量，并返回结果
   countSpacesBelow(row, col) {
-    var result = 0;
-    for (var i = row + 1; i < gameOptions.fieldSize; i++) {
+    let result = 0;
+    for (let i = row + 1; i < gameOptions.fieldSize; i++) {
       if (this.tilesArray[i][col].isEmpty) {
         result++;
       }
@@ -546,8 +546,8 @@ class TheGame {
 
   // 计算一列有多少个留空的位置，并返回结果
   tilesInColumn(col) {
-    var result = 0;
-    for (var i = 0; i < gameOptions.fieldSize; i++) {
+    let result = 0;
+    for (let i = 0; i < gameOptions.fieldSize; i++) {
       if (!this.tilesArray[i][col].isEmpty) {
         result++;
       }
@@ -563,15 +563,15 @@ class TheGame {
       this.destroyTiles();
     }
     else {
-      // 用户可以再次点击了
+      // 玩家可以再次点击了
       this.canPick = true;
     }
   }
 
   // 找到匹配的格子，并且返回
   findItem(item) {
-    for (var i = 0; i < gameOptions.fieldSize; i++) {
-      for (var j = 0; j < gameOptions.fieldSize; j++) {
+    for (let i = 0; i < gameOptions.fieldSize; i++) {
+      for (let j = 0; j < gameOptions.fieldSize; j++) {
         if (this.tilesArray[i][j].value === 10 + item) {
           return this.tilesArray[i][j];
         }
@@ -600,7 +600,7 @@ class TheGame {
 
   // 检查fillled数组中是否包含这个焦点元素
   pointInArray(p) {
-    for (var i = 0; i < this.filled.length; i++) {
+    for (let i = 0; i < this.filled.length; i++) {
       if (this.filled[i].x === p.x && this.filled[i].y === p.y) {
         return true;
       }
