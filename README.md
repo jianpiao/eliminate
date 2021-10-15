@@ -9,4 +9,8 @@ Phaser 是一个快速、免费、有趣的开源HTML5游戏框架，在桌面�
 
 ## 安装教程
 
-直接克隆(git clone)到本地，开启Live Server插件，跑起来即可。
+1. 直接克隆(git clone)到本地
+
+2. 安装依赖(npm install)
+
+3. 运行项目(npm run serve)，跑起来即可
