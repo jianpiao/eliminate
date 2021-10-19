@@ -65,7 +65,6 @@ class TheGame {
     // 加载背景资源
     game.load.image('bg', "./assets/bg.png")
     game.load.image('bg1', "./assets/bg1.png")
-    game.load.image('bg2', "./assets/bg2.png")
 
   }
 
